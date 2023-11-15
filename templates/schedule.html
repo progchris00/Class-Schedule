@@ -9,21 +9,25 @@
         <table id="Sample">
             <tbody>
                 <tr>
-                    <th> Course/s </th>
+                    <th> Course Code </th>
                     <th> Descriptive Title </th>
                     <th> Time </th>
                     <th> Room </th>
                     <th> Modality </th>
                     <th> Instructor </th>
                 </tr>
+
+                {% for subject in subjects %}
                 <tr>
-                    <td> SHA FIL12 </td>
+                    <td> {{ subject }} </td>
                     <td> sampe Descriptive Title </td>
-                    <td> sampe Time </td>
-                    <td> sampe Room </td>
-                    <td> sampe Modality </td>
-                    <td> sampe Instructor </td>
+                    <td> sample Time </td>
+                    <td> sample Room </td>
+                    <td> sample Modality </td>
+                    <td> sample Instructor </td>
                 </tr>
+                {% endfor %}
+                
             </tbody>
         </table>
     </div>
