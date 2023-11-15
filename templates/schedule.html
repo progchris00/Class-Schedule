@@ -10,21 +10,29 @@
             <tbody>
                 <tr>
                     <th> Course Code </th>
-                    <th> Descriptive Title </th>
+                    <th> Date </th>
                     <th> Time </th>
                     <th> Room </th>
                     <th> Modality </th>
-                    <th> Instructor </th>
                 </tr>
 
-                {% for subject in subjects %}
+                {% for subject in schedule %}
                 <tr>
-                    <td> {{ subject }} </td>
-                    <td> sampe Descriptive Title </td>
-                    <td> sample Time </td>
-                    <td> sample Room </td>
-                    <td> sample Modality </td>
-                    <td> sample Instructor </td>
+                    <td> {{ subject['subject_name'] }} </td>
+                    <td> {{ subject['date'] }} </td>
+                    <td> {{ subject['time'] }} </td>
+                    <td> {{ subject['room'] }} </td>
+                    <td> 
+                        {% if subject['status'] == 'none' %}
+                        <select> 
+                            <option selected hidden> Select </option>
+                            <option value="Online"> Online </option>
+                            <option value="Online"> Face to face </option>
+                        </select>
+                        {% else %}
+                            {{ subject['status'] }}
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
                 

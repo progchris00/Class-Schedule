@@ -14,7 +14,20 @@ subjects = ["ITEC 101",
 
 @app.route("/")
 def showSchedule():
-    return render_template("schedule.html", subjects=subjects)
+    # Connect to the SQLite database
+    connection = sqlite3.connect('schedule.db')
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+
+    # Fetch the schedule data from the database
+    cursor.execute('SELECT * FROM schedule')
+    schedule_data = cursor.fetchall()
+
+    # Close the database connection
+    connection.close()
+
+    # Render a template with the schedule data
+    return render_template('schedule.html', schedule=schedule_data)
 
 
 @app.route("/update")
