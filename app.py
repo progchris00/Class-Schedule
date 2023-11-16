@@ -58,4 +58,4 @@ def showschedule():
     cursor.execute(f"SELECT * FROM schedule WHERE date = '{currentdate}' AND is_default = 'false' ")
     schedule_data = cursor.fetchall()
 
-    return render_template('showschedule.html', schedule=schedule_data)
+    return render_template('showschedule.html', schedule=schedule_data, currentdate=currentdate, todaysDay=todaysDay)

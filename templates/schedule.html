@@ -5,9 +5,9 @@
 <h2> It looks like the schedule for today is not yet set. Set it now! </h2>
 
 <form action="/setschedule" method="post">
-<h2> Day: {{ todaysDay }}</h2>
-<h2> Date: <input type="date" name="currentdate"> </h2>
-
+ Day: {{ todaysDay }}
+ Date: <input type="date" name="currentdate">
+ 
 <div class="sched">
     <div class="content-table">
         <table id="Sample">
@@ -40,4 +40,5 @@
 
 <button type="submit"> Set </button>
 </form>
+
 {% endblock %}
