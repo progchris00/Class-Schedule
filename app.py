@@ -4,15 +4,10 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-subjects = ["ITEC 101",
-            "PI 100",
-            "PATHFIT 1"
-]
-
 todaysDay= datetime.now().strftime('%A')
 
 @app.route("/")
-def showSchedToday():
+def schedTodayTemplate():
     # Connect to the SQLite database
     connection = sqlite3.connect('schedule.db')
     connection.row_factory = sqlite3.Row
@@ -37,7 +32,11 @@ def setSchedule():
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
 
-    for subject in subjects:
+    cursor.execute(f"SELECT * FROM schedule WHERE day = '{todaysDay}' AND is_default = 'true' ")
+    schedule_data = cursor.fetchall()
+
+    for subject_row in schedule_data:
+        subject = subject_row['subject_name']
         room = request.form.get(f'room_{subject}')
         modality = request.form.get(f'modality_{subject}')
         time = request.form.get(f'time_{subject}')
@@ -47,6 +46,7 @@ def setSchedule():
 
     connection.close()
     return redirect(url_for('showschedule'))
+
 
 @app.route("/showschedule")
 def showschedule():
