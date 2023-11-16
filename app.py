@@ -12,7 +12,7 @@ subjects = ["ITEC 101",
 todaysDay= datetime.now().strftime('%A')
 
 @app.route("/")
-def showSchedule():
+def showSchedToday():
     # Connect to the SQLite database
     connection = sqlite3.connect('schedule.db')
     connection.row_factory = sqlite3.Row
@@ -27,11 +27,6 @@ def showSchedule():
 
     # Render a template with the schedule data
     return render_template('schedule.html', schedule=schedule_data, todaysDay=todaysDay)
-
-
-@app.route("/update")
-def updateSchedule():
-    return render_template("index.html")
 
 
 @app.route("/setschedule", methods=["POST"])
