@@ -1,0 +1,20 @@
+<table id="Sample">
+    <tbody>
+        <tr>
+            <th> Subjects </th>
+            <th> Time </th>
+            <th> Room </th>
+            <th> Modality </th>
+        </tr>
+
+        {% for subject in schedule %}
+        <tr>
+            <td> {{ subject['subject_name'] }} </td>
+            <td> {{ subject['time'] }} </td>
+            <td> {{ subject['room'] }} </td>
+            <td> {{ subject['modality'] }} </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
