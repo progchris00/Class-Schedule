@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+#logo {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.card-text{
+    text-align: justify;
+}
+
+body{
+    background-color: #f0f2f5;
+}
+
+.container a{
+    color: white;
+    font-size: 0.925rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-title{
+    text-align: left;
+    font-weight: bold;
+}
+
+.inner {
+    overflow: hidden;
+}
+
+.inner img{
+    transition: all 1.5s ease;
+}
+
+.inner:hover img{
+    transform: scale(1.5);
+}
+
+li{
+    margin-right: 25px;
+}
+
+.dropdown-menu a{
+    color: black;
+    text-align: center;
+}
+
+.container a:hover{
+    color: #0d0d64;
+}
+
+/* start table css */
+
+.row_one{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.row_two{
+    text-align: center;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    background-color: #cacaca;
+    border-radius: 10px;
+    border: 2px black solid;
+    padding: 0px 10px;
+    font-weight: bold;
+}
+
+.row_two h3{
+    margin-top: 0;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+table {
+    margin: auto;
+    font-size: 16px;
+    border-collapse: collapse;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.8); 
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 2%;
+    
+}
+
+th {
+    background-color: #0d6efd;
+    margin: 0;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    
+}
+
+.content-table tbody tr:nth-of-type(odd) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 3px solid #0d6efd;
+}
+
+.content-table table {
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.20);
+}
+
+.content-table tbody td.title {
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+.header-container {
+    text-align: center;
+    background-color: #0d6efd; /* Blue color */
+    color: white;
+    padding: 10px; /* Adjust padding as needed */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    margin-bottom: 20px; /* Adjust margin as needed */
+    width: 25%;
+    margin: 0 auto 20px;
+}
