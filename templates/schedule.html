@@ -2,35 +2,42 @@
 
 {% block body %}
 
-<h2> Date: </h2>
+<h2> It looks like the schedule for today is not yet set. Set it now! </h2>
+
+<form action="/setschedule" method="post">
+<h2> Day: {{ todaysDay }}</h2>
+<h2> Date: <input type="date" name="currentdate"> </h2>
 
 <div class="sched">
     <div class="content-table">
         <table id="Sample">
             <tbody>
                 <tr>
-                    <th> Course Code </th>
-                    <th> Descriptive Title </th>
+                    <th> Subjects </th>
                     <th> Time </th>
                     <th> Room </th>
                     <th> Modality </th>
-                    <th> Instructor </th>
                 </tr>
 
-                {% for subject in subjects %}
+                {% for subject in schedule %}
                 <tr>
-                    <td> {{ subject }} </td>
-                    <td> sampe Descriptive Title </td>
-                    <td> sample Time </td>
-                    <td> sample Room </td>
-                    <td> sample Modality </td>
-                    <td> sample Instructor </td>
+                    <td> <input type="text" name="{{ subject['subject_name'] }}" hidden>{{ subject['subject_name'] }} </td>
+                    <td> <input type="text" name="time_{{ subject['subject_name'] }}" placeholder="Time"> </td>
+                    <td> <input type="text" name="room_{{ subject['subject_name'] }}" placeholder="Room"> </td>
+                    <td> 
+                        <select name="modality_{{ subject['subject_name'] }}"> 
+                            <option selected hidden> Select </option>
+                            <option value="Online"> Online </option>
+                            <option value="Face to face"> Face to face </option>
+                        </select>
+                    </td>
                 </tr>
                 {% endfor %}
-                
             </tbody>
         </table>
     </div>
 </div>
 
+<button type="submit"> Set </button>
+</form>
 {% endblock %}
