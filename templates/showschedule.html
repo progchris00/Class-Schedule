@@ -3,7 +3,13 @@
 {% block body %}
 
 <div class="header-container">
-    <h5> Date: {{ currentdate }}, {{ todaysDay }}</h5>
+    <h5> 
+        <form action="/showschedule" method="post">
+            <button type="submit" name="changeDate" value="previous"> &lt;&lt; </button>
+            {{ currentdate }}, {{ todaysDay }}
+            <button type="submit" name="changeDate" value="next"> &gt;&gt; </button>
+        </form> 
+    </h5>
 </div>
 
 <div class="sched">

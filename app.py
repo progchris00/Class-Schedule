@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, g, redirect, url_for
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -48,9 +48,21 @@ def setSchedule():
     return redirect(url_for('showschedule'))
 
 
-@app.route("/showschedule")
+@app.route("/showschedule", methods=["POST", "GET"])
 def showschedule():
-    currentdate = datetime.now().strftime('%Y-%m-%d')
+    currentdate = request.form.get('chosenDate')
+
+    if request.method == "POST":
+        change_date = request.form.get('changeDate')
+        
+        if change_date == 'previous':
+            currentdate = (datetime.strptime(currentdate, '%Y-%m-%d') - timedelta(days=1)).strftime('%Y-%m-%d')
+        elif change_date == 'next':
+            currentdate = (datetime.strptime(currentdate, '%Y-%m-%d') + timedelta(days=1)).strftime('%Y-%m-%d')
+
+    else:
+        currentdate = datetime.now().strftime('%Y-%m-%d')
+
     connection = sqlite3.connect('schedule.db')
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
@@ -59,3 +71,17 @@ def showschedule():
     schedule_data = cursor.fetchall()
 
     return render_template('showschedule.html', schedule=schedule_data, currentdate=currentdate, todaysDay=todaysDay)
+
+
+@app.route("/changeDate")
+def changeDate():
+    chosenDate = request.args.get('chosenDate')
+
+    connection = sqlite3.connect('schedule.db')
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+
+    cursor.execute(f"SELECT * FROM schedule WHERE date = '{chosenDate}' AND is_default = 'false' ")
+    schedule_data = cursor.fetchall()
+
+    return render_template('showschedule.html', schedule=schedule_data, currentdate=chosenDate, todaysDay=todaysDay)
